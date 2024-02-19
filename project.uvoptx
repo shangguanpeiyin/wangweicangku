@@ -120,7 +120,6 @@
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGUARM</Key>
-          <Name>?</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -188,7 +187,7 @@
         <Ww>
           <count>7</count>
           <WinNumber>1</WinNumber>
-          <ItemText>\\project\User/src/mech.c\ChooseFlag</ItemText>
+          <ItemText>kongzhi</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>

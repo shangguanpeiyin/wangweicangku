@@ -80,6 +80,9 @@ void FindZero()
 	OSTimeDly(10000);
 }
 
+int kongzhi = 0;
+int wait	= 0;
+
 void Seeding()
 {
 	if (Storage) {
@@ -88,24 +91,69 @@ void Seeding()
 		Valve_Ctrl(CylinderCalculate(4, Close));	// 调整存放位置
 		OSTimeDly(5000);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}									// 分布控制
+		wait						= 0;	// 0表示没有等待，1表示等待kongzhi置1
+		kongzhi						= 0;
+
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.PutAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						  = 0;
+		kongzhi						  = 0;
 
 		Mech.Steering->mode			  = Zdrive_Position;	// 回转
 		Mech.Steering->ValueSet.angle = Mech.SteerAngle;
 		Mech.Steering->begin		  = true;
 		Zdrive_Check_place(Mech.Steering);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
+
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直（插进去放苗）
 		Mech.UpDown->ValueSet.angle = Mech.DownAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Open));	   // 存苗
 		Valve_Ctrl(CylinderCalculate(3, Open));
 		OSTimeDly(10000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait							= 0;
+		kongzhi							= 0;
 
 		Mech.UpDown->Limit.POS_rpmLimit = 1000;
 
@@ -121,29 +169,83 @@ void Seeding()
 		Mech.UpDown->Limit.POS_rpmLimit = 3000;
 		// 回到原位了，再次取苗（上面代码复制，微改动）
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Close));	// 夹苗
 		Valve_Ctrl(CylinderCalculate(3, Close));
 		Valve_Ctrl(CylinderCalculate(4, Open));	   // 调整存放位置
 		OSTimeDly(5000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.PutAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						  = 0;
+		kongzhi						  = 0;
+
 		Mech.Steering->mode			  = Zdrive_Position;	// 回转
 		Mech.Steering->ValueSet.angle = Mech.SteerAngle;
 		Mech.Steering->begin		  = true;
 		Zdrive_Check_place(Mech.Steering);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直（插进去放苗）
 		Mech.UpDown->ValueSet.angle = Mech.DownAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Open));	   // 存苗
 		Valve_Ctrl(CylinderCalculate(3, Open));
 		OSTimeDly(5000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait							= 0;
+		kongzhi							= 0;
 
 		Mech.UpDown->Limit.POS_rpmLimit = 1000;
 
@@ -159,90 +261,254 @@ void Seeding()
 		Mech.UpDown->Limit.POS_rpmLimit = 3000;
 		// 到此，二次完毕
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Close));	// 夹苗
 		Valve_Ctrl(CylinderCalculate(3, Close));
 		OSTimeDly(5000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.DownAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
+
 	} else {
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.CatchAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Open));	   // 放苗
 		OSTimeDly(10000);
 		Valve_Ctrl(CylinderCalculate(3, Open));	   // 右
 		OSTimeDly(10000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.DownAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						  = 0;
+		kongzhi						  = 0;
+
 		Mech.Steering->mode			  = Zdrive_Position;	// 回转
 		Mech.Steering->ValueSet.angle = Mech.SteerAngle;
 		Mech.Steering->begin		  = true;
 		Zdrive_Check_place(Mech.Steering);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Close));	// 夹苗
 		Valve_Ctrl(CylinderCalculate(3, Close));
 		OSTimeDly(10000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直,拔出来
 		Mech.UpDown->ValueSet.angle = Mech.PutAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						  = 0;
+		kongzhi						  = 0;
+
 		Mech.Steering->mode			  = Zdrive_Position;	// 回转
 		Mech.Steering->ValueSet.angle = 0;
 		Mech.Steering->begin		  = true;
 		Zdrive_Check_place(Mech.Steering);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
+
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.CatchAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
 
 		Valve_Ctrl(CylinderCalculate(4, Close));	// 调整存苗机构位置
 
 		// 循环如下：
 		Valve_Ctrl(CylinderCalculate(2, Open));	   // 放苗
 		OSTimeDly(10000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(3, Open));	   // 右
 		OSTimeDly(10000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.DownAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						  = 0;
+		kongzhi						  = 0;
+
 		Mech.Steering->mode			  = Zdrive_Position;	// 回转
 		Mech.Steering->ValueSet.angle = Mech.SteerAngle;
 		Mech.Steering->begin		  = true;
 		Zdrive_Check_place(Mech.Steering);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
+
 		Valve_Ctrl(CylinderCalculate(2, Close));	// 夹苗
 		Valve_Ctrl(CylinderCalculate(3, Close));
 		OSTimeDly(10000);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
 
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直,拔出来
 		Mech.UpDown->ValueSet.angle = Mech.PutAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						  = 0;
+		kongzhi						  = 0;
+
 		Mech.Steering->mode			  = Zdrive_Position;	// 回转
 		Mech.Steering->ValueSet.angle = 0;
 		Mech.Steering->begin		  = true;
 		Zdrive_Check_place(Mech.Steering);
 
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait						= 0;
+		kongzhi						= 0;
+
 		Mech.UpDown->mode			= DJ_POSITION;	  // 垂直
 		Mech.UpDown->ValueSet.angle = Mech.CatchAngle;
 		Mech.UpDown->begin			= true;
 		DJ_Check_place(Mech.UpDown);
+
+		while (kongzhi == 0) {
+			wait = 1;
+			if (kongzhi) {
+				break;
+			}
+		}	 // 分布控制
+		wait	= 0;
+		kongzhi = 0;
 
 		// 最后
 		Valve_Ctrl(CylinderCalculate(2, Open));	   // 放苗

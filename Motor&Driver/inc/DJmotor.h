@@ -22,7 +22,7 @@
 
 #define ZERO_DISTANCE_THRESHOLD	 15
 #define DuZhuan_THRESHOLD		 1.0f
-#define Reach_THRESHOLD			 3.0f
+#define Reach_THRESHOLD			 2.0f
 #define SETLOCK_MAXDIS_THRESHOLD 10
 
 // 电机工作模式枚举体

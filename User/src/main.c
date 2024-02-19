@@ -17,7 +17,8 @@ extern int				kai;
 // DJ顶部263，底端0.   Z:放苗位置： 783.795898
 // DJ 放苗 160
 
-int main(void)
+int main(void)                                                                                                                                                                                 
+	                                                                                       
 {
 	SystemInit();
 	NVIC_SetPriorityGrouping(NVIC_PriorityGroup_3);
