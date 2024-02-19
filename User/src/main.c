@@ -107,15 +107,13 @@ static void R1_Task(void* pdata)
 		if (kai == 7)
 			Valve_Ctrl(0);
 		if (kai == 8)
-			Valve_Ctrl(1<<7);		
+			Valve_Ctrl(1 << 7);
 		if (kai == 9)
-			Valve_Ctrl(1<<6);		
+			Valve_Ctrl(1 << 6);
 		if (kai == 10)
-			Valve_Ctrl(1<<5);			
-		
-		
-		
-		
+			Valve_Ctrl(1 << 5);
+
+		if (/* condition */) {}
 	}
 }
 
