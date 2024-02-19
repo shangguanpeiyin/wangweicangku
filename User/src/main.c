@@ -15,7 +15,7 @@ extern int				A2;
 extern int				kai;
 
 // DJ顶部263，底端0.   Z:放苗位置： 783.795898
-// DJ 放苗 160
+// DJ 放苗 160.0
 
 int main(void)
 {
