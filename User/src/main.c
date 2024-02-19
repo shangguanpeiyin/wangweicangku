@@ -112,8 +112,6 @@ static void R1_Task(void* pdata)
 			Valve_Ctrl(1 << 6);
 		if (kai == 10)
 			Valve_Ctrl(1 << 5);
-
-		if (/* condition */) {}
 	}
 }
 
